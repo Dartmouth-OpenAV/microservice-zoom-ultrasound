@@ -1,0 +1,14 @@
+name: Build Latest from Shared Workflow
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  call-builder-workflow:
+    permissions:
+      contents: read
+      packages: write
+    uses: Dartmouth-OpenAV/shared-workflows/.github/workflows/build_latest.yaml@main
+    with:
+      extra-labels: --label "CONTAINER_LAUNCH_EXTRA_PARAMETERS=--env host=\$HOSTNAME --device /dev/snd --security-opt seccomp=unconfined"
