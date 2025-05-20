@@ -1,6 +1,6 @@
 <?php
 
-echo "Zoom Ultrasound Microservice" ;
-exit( 0 ) ;
+echo "OpenAV Zoom Ultrasound Microservice";
+exit(0);
 
 ?>
