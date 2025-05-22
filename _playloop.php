@@ -18,7 +18,7 @@ while( true ) {
 			$code_to_gen = trim( file_get_contents("/web/code.txt") ) ;
 			echo "> " . date( "Y-m-d H:i:s" ) . " - regening code to: {$code_to_gen}\n" ;
 			shell_exec( "/gensound.php {$code_to_gen} > /web/code.wav" ) ;
-			shell_exec( "/usr/bin/amixer set Headphone 91%" ) ;
+			shell_exec( "/usr/bin/amixer set PCM 85%" ) ;
 			file_put_contents( "/web/code.gened", $code_to_gen ) ;
 		}
 		shell_exec( "/usr/bin/play /web/code.wav" ) ;
