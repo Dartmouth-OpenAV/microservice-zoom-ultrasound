@@ -33,8 +33,12 @@ while( true ) {
 				$sleep_for = 2 ;
 			}
 		} else {
-			echo "> non-200 response code from orchestrator: {$response_code}\n" ;
-			add_errors( "non-200 response code from orchestrator: {$response_code}" ) ;
+			$timeout_potentially = "" ;
+			if( $curl_errno==28 ) {
+				$timeout_potentially = " (which is a timeout)" ;
+			}
+			echo "> non-200 response code from orchestrator: {$response_code}{$timeout_potentially}\n" ;
+			add_errors( "non-200 response code from orchestrator: {$response_code}{$timeout_potentially}" ) ;
 		}
 	}
 	sleep( $sleep_for ) ;
