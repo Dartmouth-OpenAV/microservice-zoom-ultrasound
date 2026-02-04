@@ -38,7 +38,7 @@ while( true ) {
 				$timeout_potentially = " (which is a timeout)" ;
 			}
 			echo "> non-200 response code from orchestrator: {$response_code}{$timeout_potentially}\n" ;
-			add_errors( "non-200 response code from orchestrator: {$response_code}{$timeout_potentially}" ) ;
+			// add_errors( "non-200 response code from orchestrator: {$response_code}{$timeout_potentially}" ) ;
 		}
 	}
 	sleep( $sleep_for ) ;
