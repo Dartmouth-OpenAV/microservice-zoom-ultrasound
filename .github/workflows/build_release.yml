@@ -11,4 +11,4 @@ jobs:
       packages: write
     uses: Dartmouth-OpenAV/shared-workflows/.github/workflows/build_release.yaml@main
     with:
-      extra-labels: --label "CONTAINER_LAUNCH_EXTRA_PARAMETERS=--env host=\`cat /etc/hostname\` --device /dev/snd --security-opt seccomp=unconfined"
+      extra-labels: --label "CONTAINER_LAUNCH_EXTRA_PARAMETERS=-v /etc/hostname:/etc/hostname.host:ro --device /dev/snd --security-opt seccomp=unconfined"
