@@ -7,7 +7,7 @@ while( true ) {
 	if( $last_checked_for_new_code===false ||
 		(time()-$last_checked_for_new_code)>2 ) {
 
-		$orchestrator_url = "http://" . trim(file_get_contents("/container_to_container_ip")) . "/backend.php?command=get_status" ;
+		$orchestrator_url = "http://" . trim(file_get_contents("/container_to_container_ip")) . ":81/api/systems/" . str_replace("-orchestrator", "", trim(file_get_contents("/etc/hostname.host"))) . "/state" ;
 
 		$ch = curl_init() ;
 		curl_setopt( $ch, CURLOPT_URL, $orchestrator_url ) ;
@@ -21,14 +21,14 @@ while( true ) {
 
 		if( $response_code==200 ) {
 			$response = json_decode( $response, true ) ;
-			if( !isset($response['zoom_room']['sharing_info']['pairing_code']) ) {
+			if( !isset($response['zoom_room']['pairing_code']) ) {
 				echo "> no pairing code found\n" ;
 				// echo "> unexpected response with:\n" . var_export( $response ) . "\n" ;
 				// add_errors( "unexpected response with:\n" . var_export( $response ) ) ;
 				$sleep_for = 10 ;
 			} else {
-				echo "> code: {$response['zoom_room']['sharing_info']['pairing_code']}\n" ;
-				file_put_contents( "/web/code.txt", $response['zoom_room']['sharing_info']['pairing_code'] ) ;
+				echo "> code: {$response['zoom_room']['pairing_code']}\n" ;
+				file_put_contents( "/web/code.txt", $response['zoom_room']['pairing_code'] ) ;
 				$last_checked_for_new_code = time() ;
 				$sleep_for = 2 ;
 			}
