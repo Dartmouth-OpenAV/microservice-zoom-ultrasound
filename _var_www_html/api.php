@@ -51,7 +51,7 @@ function get_errors() {
 		unlink( "/web/errors.json" ) ;
 		close_with_500( $errors ) ;
 	} else {
-		close_with_200( "no errors" ) ;
+		close_with_200( [] ) ;
 	}
 }
 
